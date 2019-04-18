@@ -33,10 +33,5 @@ object pepita {
 		energia -= self.energiaParaVolar(position.distance(nuevaPosicion))
 		self.position(nuevaPosicion)
 	}
-	method distance(position) {
-	    const deltaX = x - position.x()
-	    const deltaY = y - position.y()
-	    return (deltaX.square() + deltaY.square()).squareRoot() 
-	}	
 	
 }
