@@ -30,6 +30,8 @@ program PepitaGame {
 
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
+	//keyboard.m().onPressdo { pepita.volaHacia(manzana) pepita.come(manzana) game.removeVisual("manzana.png") }
+	//keyboard.a().onPressDo { pepita.volaHacia(alpiste) pepita.come(alpiste) game.removeVisual("alpiste.png")}
 
 	keyboard.up().onPressDo { pepita.move(pepita.position().up(1)) }
 	keyboard.down().onPressDo { pepita.move(pepita.position().down(1)) }

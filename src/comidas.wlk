@@ -1,7 +1,7 @@
 import wollok.game.*
 object manzana {
 	method image() = "manzana.png"
-	
+	method position() = game.at(5,1)
 	method energia() = 80
 	method position() = game.at(5,1)
 }

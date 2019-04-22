@@ -13,10 +13,15 @@ object pepita {
 	}
 	
 	method volaHacia(unaCiudad) {
-		if (ciudad != unaCiudad) {
+		if (ciudad != unaCiudad and self.puedeVolarHacia(unaCiudad) ) {
 			self.move(unaCiudad.position())
 			ciudad = unaCiudad
 		}
+		if(self.ciudad()==unaCiudad){return"ya estoy aca "}
+		else{return "dame comida y despues vemos"}
+	}
+	method puedeVolarHacia(unaCiudad){
+		return self.energiaParaVolar(position.distance(unaCiudad))<=self.energia()
 	}
 
 	method energiaParaVolar(distancia) = 15 + 5 * distancia
@@ -48,3 +53,9 @@ object pipa{
 	method image() = "pepitaCanchera.png"
 	method position()= game.at(5,8)
 }
+object roque{
+	method image()= "jugador.png"
+}
+
+
+
