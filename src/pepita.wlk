@@ -53,6 +53,7 @@ object pipa{
 	method image() = "pepitaCanchera.png"
 	method position()= game.at(5,8)
 }
+
 object roque{
 	method image()= "jugador.png"
 }
