@@ -12,12 +12,19 @@ program PepitaGame {
 	game.ground("suelo.png")
 
 //	VISUALES
-	game.addVisualIn(alpiste, game.at(5,5))
-	game.addVisualIn(manzana, game.at(5,1))
+	game.addVisual(alpiste)
+	game.addVisual(manzana)
 	game.addVisual(buenosAires)
 	game.addVisual(villaGesell)
 	game.addVisual(pepita)
-
+    game.addVisual(pepona)
+    
+//  COLISIONES
+//opcion1
+    game.whenCollideDo(pepita,{ave=>pepita.nuevaAmiga(ave)})
+ //opcion2
+     game.whenCollideDo(pepona,{golondrina=>golondrina.nuevaAmiga(pepona)})
+     //game.whenCollideDo(pipa,{golondrina=>golondrina.nuevaAmiga(pipa)}) 
 //	TECLADO
 	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
 
@@ -28,6 +35,10 @@ program PepitaGame {
 	keyboard.down().onPressDo { pepita.move(pepita.position().down(1)) }
 	keyboard.left().onPressDo { pepita.move(pepita.position().left(1)) }
 	keyboard.right().onPressDo { pepita.move(pepita.position().right(1)) }
+	keyboard.m().onPressDo{pepita.volaYCome(manzana)}
+    keyboard.a().onPressDo{pepita.volaYCome(alpiste)}
+	
+	
 		
 //	START
 	game.start()
