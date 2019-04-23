@@ -55,12 +55,21 @@ object roque{
 		if(self.comida()!=_comida){
 			game.removeVisual(_comida)
 			self.tirarComidaQueTiene()
-			return self.comida(_comida)
+			self.comida(_comida)
 		}
 	}
 	method tirarComidaQueTiene(){
 		if (comida!=[ ]){
-			game.addVisualIn(comida,game.at(1.randomUpTo(10),1.randomUpTo(10)))
+			var comidaATirar = comida
+			game.addVisualIn(comidaATirar,game.at(1.randomUpTo(10),1.randomUpTo(10)))
+			game.whenCollideDo(comidaATirar, {roque => roque.agarrarComida(comidaATirar) })
+		}
+	}
+	method alimentarAve(pajaro){
+		if(comida!=[ ]){
+		pepita.come(comida)
+		game.addVisualIn(comida,game.at(1.randomUpTo(10),1.randomUpTo(10)))
+		comida=[ ]
 		}
 	}
 }
