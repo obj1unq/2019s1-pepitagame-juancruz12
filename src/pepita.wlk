@@ -2,6 +2,7 @@ import ciudades.*
 import wollok.game.*
 import comidas.*
 
+
 object pepita {
 	var property energia = 100
 	var property ciudad = buenosAires 
@@ -16,6 +17,8 @@ object pepita {
 
 	method come(comida) {
 		energia = energia + comida.energia()
+		game.removeVisual(comida)
+		
 	}
 	
 	method volaHacia(unaCiudad) {
@@ -41,6 +44,9 @@ object pepita {
 		self.come(comida)
 		game.removeVisual(comida)
 	}
+	method teEncontro(alguien){
+		return null
+	}
 
 }
 object roque{
@@ -58,19 +64,37 @@ object roque{
 			self.comida(_comida)
 		}
 	}
+	
 	method tirarComidaQueTiene(){
 		if (comida!=[ ]){
 			var comidaATirar = comida
 			game.addVisualIn(comidaATirar,game.at(1.randomUpTo(10),1.randomUpTo(10)))
 			game.whenCollideDo(comidaATirar, {roque => roque.agarrarComida(comidaATirar) })
+			
 		}
 	}
 	method alimentarAve(pajaro){
 		if(comida!=[ ]){
 		pepita.come(comida)
 		game.addVisualIn(comida,game.at(1.randomUpTo(10),1.randomUpTo(10)))
+		game.whenCollideDo(comida, {roque => roque.agarrarComida(comida) })
 		comida=[ ]
 		}
+	}
+	method tirarManzana(){
+		const manzanaNueva=new Comida()
+		manzanaNueva.energia(80)
+		manzanaNueva.image("manzana.png")
+		manzanaNueva.position(5,7)
+		game.addVisual(manzanaNueva)
+		game.whenCollideDo(manzanaNueva,{pepita=>pepita.come(manzanaNueva)})
+		
+	}
+	
+	method tirarAlpiste(){
+		game.addVisual(alpiste)
+		game.whenCollideDo(alpiste,{pepita=>pepita.come(alpiste)})
+	
 	}
 }
 

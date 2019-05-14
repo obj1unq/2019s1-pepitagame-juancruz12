@@ -19,22 +19,33 @@ program PepitaGame {
 	game.addVisual(pepita)
 	game.addVisual(roque)
 //  COLISIONES
-    game.whenCollideDo(manzana, {roque => roque.agarrarComida(manzana)  })
-    game.whenCollideDo(alpiste, {roque => roque.agarrarComida(alpiste)  })
-    game.whenCollideDo(pepita, {roque=>roque.alimentarAve(pepita)})
+    game.whenCollideDo(roque, {cosa => cosa.teEncontro(roque)  })
+    //game.whenCollideDo(alpiste, {roque => roque.agarrarComida(alpiste)  })
+    //game.whenCollideDo(pepita, {roque=>roque.alimentarAve(pepita)})
+    game.whenCollideDo(manzana,{pepita=>pepita.come(manzana)})
+    game.whenCollideDo(alpiste,{pepita=>pepita.come(alpiste)})
+    game.whenCollideDo(pepita,{roque=>game.say(roque,"hola pepi")})
+    game.whenCollideDo(roque,{pepita=>game.say(pepita,"hola roque")})
 
 //	TECLADO
-	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
+	//keyboard.h().onPressDo { game.say(pepita, "Hola chikues!") }
 
-	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
-	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
-
+	//keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
+	//keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
+                                 //movimiento de roque
 	keyboard.up().onPressDo { roque.move(roque.position().up(1)) }
 	keyboard.down().onPressDo { roque.move(roque.position().down(1)) }
 	keyboard.left().onPressDo { roque.move(roque.position().left(1)) }
 	keyboard.right().onPressDo { roque.move(roque.position().right(1)) }
-	keyboard.m().onPressDo {pepita.volaYCome(manzana)}
-	keyboard.a().onPressDo {pepita.volaYCome(alpiste)}
+	keyboard.m().onPressDo{roque.tirarManzana()}
+	keyboard.l().onPressDo{roque.tirarAlpiste()}
+	                             //movimiento de pepita
+	//keyboard.m().onPressDo {pepita.volaYCome(manzana)}
+	//keyboard.a().onPressDo {pepita.volaYCome(alpiste)}
+	keyboard.w().onPressDo { pepita.move(pepita.position().up(1)) }
+	keyboard.s().onPressDo { pepita.move(pepita.position().down(1)) }
+	keyboard.a().onPressDo { pepita.move(pepita.position().left(1)) }
+	keyboard.d().onPressDo { pepita.move(pepita.position().right(1)) }
 		
 //	START
 	game.start()
